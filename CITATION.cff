@@ -8,8 +8,8 @@ message: >-
   metadata from this file.
 type: software
 authors:
-  - given-names: Gomez Espinosa
-    family-names: T.A.
+  - given-names: T.A.
+    family-names: Gomez Espinosa
     email: alejandro.gomez@cern.ch
     affiliation: Carnegie Mellon University
     orcid: 'https://orcid.org/0000-0002-9443-7769'
