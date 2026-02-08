@@ -20,6 +20,8 @@ exercises: 10
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+![Snakemake Logo](https://raw.githubusercontent.com/snakemake/snakemake/main/docs/logo-snake.svg){.img-responsive .float-right style="width: 150px; margin-left: 20px;"}
+
 ## Why Snakemake for CMS?
 
 In CMS analysis, we rarely run a single script. We create an analysis chain: **Skimming $\rightarrow$ Processing $\rightarrow$ Plotting $\rightarrow$ Fitting.** Traditionally, we managed this with "Mega-Bash" scripts or by manually submitting JDL files to HTCondor/Slurm.
@@ -36,6 +38,19 @@ In CMS analysis, we rarely run a single script. We create an analysis chain: **S
 * **The Learning Curve:** Snakemake is widely used in Genomics and Data Science. If you search for a problem on StackOverflow, you'll find an answer in seconds. LAW is more niche to the HEP community.
 * **Automation:** Snakemake is **file-based**. It looks at the "last modified" timestamp of your files. If you change your plotting script, it won't re-run the 5-hour skimming step unless you ask it to.
 * **Workflow Isolation:** All your code can run independently of Snakemake. You can think of Snakemake as a "workflow manager" that orchestrates your existing scripts (like a bash script on steroids). LAW requires you to write your tasks as Luigi Tasks, which can be more cumbersome.
+
+:::: callout
+
+### Credits and Documentation
+
+Snakemake is an open-source project created by **Johannes Köster** (University of Duisburg-Essen) in 2012. While this tutorial focuses on CMS-specific use cases, the official documentation is comprehensive and covers thousands of features.
+
+*   **Documentation**: [https://snakemake.github.io](https://snakemake.github.io)
+*   **Citation**: If you use Snakemake in your analysis, proper citation is expected in our field:
+
+> Köster, Johannes and Rahmann, Sven. "Snakemake—a scalable bioinformatics workflow engine". *Bioinformatics*, 2012.
+
+::::::::::::::::
 
 ---
 
@@ -108,7 +123,41 @@ pixi run snakemake --cores 1 skimmed_data.txt
 # snakemake --cores 1 skimmed_data.txt
 ```
 
-If successful, you will see `Finished job 0`.
+If successful, you will see `Finished jobid: 0`.
+
+:::: spoiler
+
+### Output
+
+```output
+Assuming unrestricted shared filesystem usage.
+host: gluon
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job          count
+---------  -------
+skim_data        1
+total            1
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Feb  8 12:05:08 2026]
+localrule skim_data:
+    input: raw_data.txt
+    output: skimmed_data.txt
+    jobid: 0
+    reason: Missing output files: skimmed_data.txt
+    resources: tmpdir=/tmp
+[Sun Feb  8 12:05:08 2026]
+Finished jobid: 0 (Rule: skim_data)
+1 of 1 steps (100%) done
+```
+
+::::::::::::::::::::::::
 
 :::: instructor
 
