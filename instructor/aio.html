@@ -245,7 +245,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="01-intro.html">1. Introduction to Snakemake</a>
+        <a href="00-workflows.html">1. The Why: Analysis Reproducibility</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -257,7 +257,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="02-daq.html">2. Chaining Rules (The DAG)</a>
+        <a href="01-intro.html">2. Introduction to Snakemake</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -269,7 +269,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03-scaling.html">3. Scaling with Wildcards</a>
+        <a href="02-daq.html">3. Chaining Rules (The DAG)</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -281,7 +281,31 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="04-visualizing.html">4. Visualizing the Workflow</a>
+        <a href="03-scaling.html">4. Scaling with Wildcards</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="04-visualizing.html">5. Visualizing the Workflow</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="05-containers.html">6. Containerized Execution</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -345,7 +369,155 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="aio-01-intro"><p>Content from <a href="01-intro.html">Introduction to Snakemake</a></p>
+<section id="aio-00-workflows"><p>Content from <a href="00-workflows.html">The Why: Analysis Reproducibility</a></p>
+<hr>
+<p>Last updated on 2026-02-08 |
+
+        <a href="https://github.com/alefisico/snakemake-cms-tutorial/edit/main/episodes/00-workflows.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>Why do we need workflow orchestration in CMS?</li>
+<li>What are the three pillars of a reusable analysis?</li>
+<li>Who is the primary beneficiary of a reproducible workflow?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Identify the “Knowledge Gap” in traditional HEP analyses.</li>
+<li>Understand the three-step approach to capturing an analysis.</li>
+<li>Recognize that reproducibility is a labor-saving tool for the
+analyst, not just a bureaucratic requirement.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="the-bus-factor-in-cms-analysis">The “Bus Factor” in CMS Analysis<a class="anchor" aria-label="anchor" href="#the-bus-factor-in-cms-analysis"></a>
+</h2>
+<hr class="half-width">
+<p>In a typical CMS analysis, we move through <strong>Data
+Exploration</strong>, <strong>Background Modeling</strong>,
+<strong>Systematics</strong>, and <strong>Statistical Fits</strong>.
+Usually, this is handled by a series of disconnected scripts and manual
+steps.</p>
+<p>The problem arises when an analyst moves on or a “Future You” returns
+to the code six months later:</p>
+<ul>
+<li>
+<strong>The Environment:</strong> What version of CMSSW or Coffea
+was used?</li>
+<li>
+<strong>The Logic:</strong> Why was this specific histogram used as
+input for that fit?</li>
+<li>
+<strong>The Commands:</strong> What were the exact arguments passed
+to the script?</li>
+</ul>
+<p>Without a workflow manager, this knowledge is lost, leading to
+“Scientific Archeology” where we try to dig up our own results.</p>
+</section><section><h2 class="section-heading" id="the-three-pillars-of-reusability">The Three Pillars of Reusability<a class="anchor" aria-label="anchor" href="#the-three-pillars-of-reusability"></a>
+</h2>
+<hr class="half-width">
+<p>To solve this, we think of an analysis in three layers of
+“Capturing”:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Capture Code &amp; Environment:</strong> Use
+<strong>Git</strong> for code and <strong>Containers</strong>
+(Docker/Apptainer) or <strong>Pixi/Conda</strong> for the software. This
+ensures the “Kitchen” is always the same.</li>
+<li>
+<strong>Capture Commands:</strong> Move away from manual terminal
+commands. Use a script or a rule that explicitly states how to run the
+code.</li>
+<li>
+<strong>Capture Workflow:</strong> This is the “Glue.” We define the
+<strong>relationship</strong> between steps. This is where
+<strong>Snakemake</strong> comes in.</li>
+</ol></section><section><h2 class="section-heading" id="why-should-you-care">Why should you care?<a class="anchor" aria-label="anchor" href="#why-should-you-care"></a>
+</h2>
+<hr class="half-width">
+<p>You might think: <em>“Reproducibility is for the collaboration, but
+I’m just trying to graduate.”</em></p>
+<p>Actually, the first person to benefit from a reproducible workflow is
+<strong>you</strong>.</p>
+<ul>
+<li>
+<strong>The “Re-discovery” Phase:</strong> During the CMS review
+process (ARC), you will inevitably be asked to change a systematic or
+re-run a plot with new data. A Snakemake workflow allows you to do this
+by changing one line and typing one command.</li>
+<li>
+<strong>Automation:</strong> Instead of waiting for Step A to finish
+so you can manually start Step B, you can launch the whole chain and go
+get coffee.</li>
+</ul>
+<div id="who-is-the-most-frequent-user-of-your-analysis-code" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="who-is-the-most-frequent-user-of-your-analysis-code" class="callout-inner">
+<h3 class="callout-title">Who is the most frequent user of your analysis
+code?</h3>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p><strong>Future You.</strong> Six months from now, when you have to
+re-run your plots for a conference or a paper revision, you will thank
+“Past You” for writing a Snakefile instead of a 20-page README.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li>Modern CMS analysis is too complex to be managed by memory or manual
+scripts.</li>
+<li>Reproducibility is a <strong>productivity tool</strong>: it makes
+your own work easier to revise and update.</li>
+<li>Capturing the <strong>Workflow</strong> (the “Glue”) is the final
+step in ensuring an analysis is truly reusable.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-01-intro"><p>Content from <a href="01-intro.html">Introduction to Snakemake</a></p>
 <hr>
 <p>Last updated on 2026-02-08 |
 
@@ -384,7 +556,8 @@
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="why-snakemake-for-cms">Why Snakemake for CMS?<a class="anchor" aria-label="anchor" href="#why-snakemake-for-cms"></a>
+<figure><img src="https://raw.githubusercontent.com/snakemake/snakemake/main/docs/logo-snake.svg" class="img-responsive float-right figure mx-auto d-block" style="width: 150px; margin-left: 20px;" alt="Snakemake Logo"><div class="figcaption">Snakemake Logo</div>
+</figure><section><h2 class="section-heading" id="why-snakemake-for-cms">Why Snakemake for CMS?<a class="anchor" aria-label="anchor" href="#why-snakemake-for-cms"></a>
 </h2>
 <hr class="half-width">
 <p>In CMS analysis, we rarely run a single script. We create an analysis
@@ -434,6 +607,33 @@ manager” that orchestrates your existing scripts (like a bash script on
 steroids). LAW requires you to write your tasks as Luigi Tasks, which
 can be more cumbersome.</li>
 </ul>
+<div id="credits-and-documentation" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="credits-and-documentation" class="callout-inner">
+<h3 class="callout-title">Credits and Documentation</h3>
+<div class="callout-content">
+<p>Snakemake is an open-source project created by <strong>Johannes
+Köster</strong> (University of Duisburg-Essen) in 2012. While this
+tutorial focuses on CMS-specific use cases, the official documentation
+is comprehensive and covers thousands of features.</p>
+<ul>
+<li>
+<strong>Documentation</strong>: <a href="https://snakemake.github.io" class="external-link">https://snakemake.github.io</a>
+</li>
+<li>
+<strong>Citation</strong>: If you use Snakemake in your analysis,
+proper citation is expected in our field:</li>
+</ul>
+<blockquote>
+<p>Köster, Johannes and Rahmann, Sven. “Snakemake—a scalable
+bioinformatics workflow engine”. <em>Bioinformatics</em>, 2012.</p>
+</blockquote>
+</div>
+</div>
+</div>
 <hr>
 </div>
 </section><section><h2 class="section-heading" id="the-essentials">The Essentials<a class="anchor" aria-label="anchor" href="#the-essentials"></a>
@@ -549,21 +749,61 @@ generate</strong>:</li>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co"># if you run snakemake from a conda environment or pip, use:</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># snakemake --cores 1 skimmed_data.txt</span></span></code></pre>
 </div>
-<p>If successful, you will see <code>Finished job 0</code>.</p>
+<p>If successful, you will see <code>Finished jobid: 0</code>.</p>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Output </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div class="accordion-body">
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Assuming unrestricted shared filesystem usage.
+host: gluon
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job          count
+---------  -------
+skim_data        1
+total            1
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Feb  8 12:05:08 2026]
+localrule skim_data:
+    input: raw_data.txt
+    output: skimmed_data.txt
+    jobid: 0
+    reason: Missing output files: skimmed_data.txt
+    resources: tmpdir=/tmp
+[Sun Feb  8 12:05:08 2026]
+Finished jobid: 0 (Rule: skim_data)
+1 of 1 steps (100%) done</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>If <code>snakemake</code> was not installed using pixi but with a
 conda environment or pip, you should remove the <code>pixi run</code>
 part and just run:</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">snakemake</span> <span class="at">--cores</span> 1 counts.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">snakemake</span> <span class="at">--cores</span> 1 counts.txt</span></code></pre>
 </div>
 <p>This will be the case for most users following this tutorial outside
 of the pixi environment.</p>
@@ -590,7 +830,7 @@ of the pixi environment.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>This <code>IndentationError</code> is the most common error you will
 encounter.</p>
@@ -744,14 +984,22 @@ time, we add a “dummy” rule at the very top.</p>
 <ol style="list-style-type: decimal">
 <li>Run <code>pixi run snakemake --cores 1</code> again.</li>
 </ol>
-<p>What happens? (Nothing to be done)</p>
+<p>What happens?</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Assuming unrestricted shared filesystem usage.
+host: xxxx
+Building DAG of jobs...
+Nothing to be done (all requested files are present and up to date).</code></pre>
+</div>
 <ol start="2" style="list-style-type: decimal">
 <li>Modify the original raw data:</li>
 </ol>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">touch</span> raw_data.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">touch</span> raw_data.txt</span></code></pre>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>Run Snakemake again.</li>
@@ -765,7 +1013,7 @@ time, we add a “dummy” rule at the very top.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>When you first run the command, Snakemake checks if
 <code>counts.txt</code> exists. Since it doesn’t, it calculates the
@@ -985,7 +1233,7 @@ simulated datasets.</p>
 <span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>    output:</span>
 <span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>        <span class="co">"skimmed/{dataset}.txt"</span></span>
 <span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>    shell:</span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>        <span class="co">"grep 'Signal' {input} &gt; {output}"</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>        <span class="co">"grep 'Signal' {input} &gt; {output} || true"</span></span>
 <span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a></span>
 <span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co"># 3. Updated Count rule with wildcards</span></span>
 <span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>rule count_events:</span>
@@ -1185,6 +1433,36 @@ will be executed), use:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">-n</span> <span class="at">-p</span></span></code></pre>
 </div>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Did the previous command work? </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
+<p>If you run this commands on top of finished workflow, you should see
+something like:</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Building DAG of jobs...
+Nothing to be done (all requested files are present and up to date).</code></pre>
+</div>
+<p>This is expected, because all the output files already exist. If you
+change something in your Snakefile (like adding a new rule or changing
+an existing one), the dry-run will show you which jobs need to be
+re-run.</p>
+<p>Alternatively, if you want to see the dry-run or the commands to
+execute, use:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">-n</span> <span class="at">-p</span> <span class="at">--forceall</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="activity-visualizing-our-scaled-workflow">Activity: Visualizing our Scaled Workflow<a class="anchor" aria-label="anchor" href="#activity-visualizing-our-scaled-workflow"></a>
 </h2>
 <hr class="half-width">
@@ -1194,16 +1472,17 @@ will be executed), use:</p>
 <code>WJets</code>).</p></li>
 <li><p>Run the DAG command:</p></li>
 </ol>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">--dag</span> <span class="kw">|</span> <span class="ex">dot</span> <span class="at">-Tpng</span> <span class="op">&gt;</span> dag.png</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">--dag</span> <span class="kw">|</span> <span class="ex">dot</span> <span class="at">-Tpng</span> <span class="op">&gt;</span> dag.png</span></code></pre>
 </div>
 <ol start="3" style="list-style-type: decimal">
-<li>Open <code>dag.png</code>. Notice how the branches for each dataset
-are parallel.</li>
+<li>Open <code>dag.png</code>, it should look like the following image.
+Notice how the branches for each dataset are parallel.</li>
 </ol>
-<div id="exercise-identifying-the-bottleneck" class="callout challenge">
+<figure><img src="../fig/dag.png" alt="DAG Visualization" class="figure mx-auto d-block"><div class="figcaption">DAG Visualization</div>
+</figure><div id="exercise-identifying-the-bottleneck" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -1244,13 +1523,15 @@ the power of a DAG-based system!</p>
 produce a giant PDF with 1,000 boxes, which is unreadable. To see a
 simplified version that only shows how the rules connect (ignoring the
 individual samples), use:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">--rulegraph</span> <span class="kw">|</span> <span class="ex">dot</span> <span class="at">-Tpng</span> <span class="op">&gt;</span> rulegraph.png</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">--rulegraph</span> <span class="kw">|</span> <span class="ex">dot</span> <span class="at">-Tpng</span> <span class="op">&gt;</span> rulegraph.png</span></code></pre>
 </div>
 <p>This is often much more useful for complex CMS analyses to ensure the
 logic is correct.</p>
+<figure><img src="../fig/rulegraph.png" alt="Rule Graph Visualization" class="figure mx-auto d-block"><div class="figcaption">Rule Graph Visualization</div>
+</figure>
 </div>
 </div>
 </div>
@@ -1271,6 +1552,312 @@ the plan before executing.</li>
 <li>
 <strong>Rule Graph</strong>: A simplified visualization showing the
 relationship between rules rather than individual files.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-05-containers"><p>Content from <a href="05-containers.html">Containerized Execution</a></p>
+<hr>
+<p>Last updated on 2026-02-08 |
+
+        <a href="https://github.com/alefisico/snakemake-cms-tutorial/edit/main/episodes/05-containers.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do I run specific steps of my analysis in a controlled
+environment?</li>
+<li>How can I use CMSSW or specific Python versions without installing
+them locally?</li>
+<li>How does Snakemake handle Apptainer/Singularity?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Use the <code>container:</code> directive to link a rule to a
+Docker/Apptainer image.</li>
+<li>Execute a workflow where different rules use different
+environments.</li>
+<li>Understand the <code>--use-apptainer</code> (or
+<code>--use-singularity</code>) flag.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="containers-your-analysis-in-a-box">Containers: Your Analysis in a Box<a class="anchor" aria-label="anchor" href="#containers-your-analysis-in-a-box"></a>
+</h2>
+<hr class="half-width">
+<p>In CMS, we often need very specific environments: a certain version
+of CMSSW, a specific ROOT version for <code>combine</code>, or a set of
+Python libraries like <code>coffea</code>. Instead of spending hours
+fighting with <code>export PATH</code> or <code>cmsenv</code>, we can
+use <strong>Containers</strong>.</p>
+<p>Snakemake makes this seamless. You can tell a specific rule to run
+inside a container, and Snakemake will automatically pull the image and
+wrap your command inside it.</p>
+<hr>
+<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
+  <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> My Opinions on this Episode </h3>
+</button>
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div class="accordion-body">
+<ul>
+<li>
+<strong>The “LPC/LXPLUS” connection:</strong> This is where you
+should mention that on most HEP clusters, <code>singularity</code> or
+<code>apptainer</code> is already installed. This makes their local
+tutorial 100% transferable to the big machines.</li>
+<li>
+<strong>Binding directories:</strong> Students often ask how the
+container sees their files. It’s worth a small note that Snakemake
+automatically “binds” the project directory so the container sees the
+code and data.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="the-container-directive">The <code>container:</code> Directive<a class="anchor" aria-label="anchor" href="#the-container-directive"></a>
+</h2>
+<hr class="half-width">
+<p>To use a container, you simply add the <code>container:</code>
+keyword to your rule.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>rule plot_data:</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>    <span class="bu">input</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>        <span class="co">"results/{dataset}_counts.txt"</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>    output:</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>        <span class="co">"plots/{dataset}.png"</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>    container:</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>        <span class="co">"docker://python:3.10-slim"</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>    shell:</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>        <span class="co">"python scripts/my_plotter.py {input} {output}"</span></span></code></pre>
+</div>
+<div class="section level3">
+<h3 id="what-happens-behind-the-scenes">What happens behind the scenes?<a class="anchor" aria-label="anchor" href="#what-happens-behind-the-scenes"></a>
+</h3>
+<p>When you run Snakemake with the <code>--use-apptainer</code>
+flag:</p>
+<ol style="list-style-type: decimal">
+<li>Snakemake sees the <code>container:</code> directive.</li>
+<li>It pulls the image (if not already present) using
+Apptainer/Singularity. <em>Note</em>: Apptainer can run
+<code>docker://</code> images perfectly fine.</li>
+<li>It starts the container and <strong>automatically mounts
+(binds)</strong> your current working directory inside it.</li>
+<li>It executes the <code>shell</code> command inside that
+container.</li>
+</ol>
+</div>
+<div class="section level3">
+<h3 id="why-is-this-better-than-a-local-environment">Why is this better than a local environment?<a class="anchor" aria-label="anchor" href="#why-is-this-better-than-a-local-environment"></a>
+</h3>
+<ul>
+<li>
+<strong>Portability</strong>: You can run the exact same container
+on your laptop, the LPC, or the Grid.</li>
+<li>
+<strong>Isolation</strong>: Rule A can use <code>python:2.7</code>
+while Rule B uses <code>python:3.11</code>. <em>No more version
+conflicts!</em>
+</li>
+<li>
+<strong>No Installation</strong>: You don’t need to install
+<code>ROOT</code> or <code>CMSSW</code> on your machine; you just need
+to point to the image.</li>
+</ul>
+<div id="a-note-on-apptainer-installation" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="a-note-on-apptainer-installation" class="callout-inner">
+<h3 class="callout-title">A Note on Apptainer Installation</h3>
+<div class="callout-content">
+<p>While we are using <strong>Pixi</strong> to manage Snakemake and our
+local Python tools, Pixi does not typically install
+Apptainer/Singularity itself. This is because Apptainer requires
+specific system-level permissions to manage containers safely.</p>
+<ul>
+<li>
+<strong>On your laptop:</strong> You must have Apptainer installed
+at the system level (e.g., via <code>brew</code> on macOS with a virtual
+machine, or your Linux distribution’s package manager).</li>
+<li>
+<strong>On CMS Clusters (LPC/LXPLUS):</strong> Apptainer is already
+pre-installed by the administrators.</li>
+</ul>
+<p>Before proceeding, verify you have it by running:
+<code>apptainer --version</code>.</p>
+</div>
+</div>
+</div>
+<hr>
+</div>
+</section><section><h2 class="section-heading" id="activity-running-a-physics-script-in-a-container">Activity: Running a “Physics” Script in a Container<a class="anchor" aria-label="anchor" href="#activity-running-a-physics-script-in-a-container"></a>
+</h2>
+<hr class="half-width">
+<p>Let’s simulate a plotting step that requires a specific Python
+environment.</p>
+<ol style="list-style-type: decimal">
+<li>Create a simple plotting script named <code>plotter.py</code>:</li>
+</ol>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co"># Simulate a plotting library requirement</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Generating plot from </span><span class="sc">{</span>sys<span class="sc">.</span>argv[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> using Python </span><span class="sc">{</span>sys<span class="sc">.</span>version<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(sys.argv[<span class="dv">2</span>], <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>    f.write(<span class="st">"IMAGE_DATA"</span>)</span></code></pre>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li>Modify your <code>Snakefile</code> to include a containerized
+plotting rule:</li>
+</ol>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>DATASETS <span class="op">=</span> [<span class="st">"DYJets"</span>, <span class="st">"TTbar"</span>, <span class="st">"Data"</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>rule <span class="bu">all</span>:</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>    <span class="bu">input</span>:</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>        expand(<span class="st">"plots/</span><span class="sc">{d}</span><span class="st">.png"</span>, d<span class="op">=</span>DATASETS)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># (Keep your previous skim_data and count_events rules here)</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>rule plot_results:</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>    <span class="bu">input</span>:</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>        <span class="co">"results/{dataset}_counts.txt"</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>    output:</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>        <span class="co">"plots/{dataset}.png"</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>    container:</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>        <span class="co">"docker://python:3.10-slim"</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>    shell:</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>        <span class="co">"python plotter.py {input} {output}"</span></span></code></pre>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>Run the workflow using Apptainer:</li>
+</ol>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">--cores</span> 1 <span class="at">--use-apptainer</span></span></code></pre>
+</div>
+<div id="callout2" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>Please note that the previous exercise will create empty “plots”
+since the <code>plotter.py</code> is just a placeholder. The point is to
+see the container in action, not to generate real plots!</p>
+</div>
+</div>
+</div>
+<p><strong>Did it work?</strong> Depending on where you run it, this
+answer may vary. If you are running on
+<code>lxplus</code>/<code>cmslpc</code>, you might get an error about
+bindings or permissions. This is the next topic we’ll cover.</p>
+</section><section><h2 class="section-heading" id="accessing-external-data-bind-mounts">Accessing External Data (Bind Mounts)<a class="anchor" aria-label="anchor" href="#accessing-external-data-bind-mounts"></a>
+</h2>
+<hr class="half-width">
+<p>By default, Snakemake only lets the container see files inside your
+current project folder.</p>
+<p><strong>The CMS Problem:</strong> In HEP, our data typically lives on
+storage areas like <code>/eos</code> or <code>/cernbox</code>, and our
+software might live on <code>/cvmfs</code>. If you try to access a file
+in <code>/eos/user/...</code> from inside the container, it will fail
+because the container is isolated.</p>
+<p><strong>The Solution:</strong> You can pass arguments to Apptainer
+using the <code>--apptainer-args</code> flag in Snakemake:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">--cores</span> 1 <span class="at">--use-apptainer</span> <span class="at">--apptainer-args</span> <span class="st">"--bind /eos:/eos --bind /cvmfs:/cvmfs"</span>  <span class="co">### --bind /uscms_data/d3/user/ if you are at the LPC</span></span></code></pre>
+</div>
+<p>This tells Apptainer: “Poke a hole in the container so I can see
+<code>/eos</code> and <code>/cvmfs</code> from the outside.”</p>
+<div id="exercise-different-containers-for-different-tasks" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-different-containers-for-different-tasks" class="callout-inner">
+<h3 class="callout-title">Exercise: Different Containers for Different
+Tasks</h3>
+<div class="callout-content">
+<p>Imagine your <code>skim_data</code> rule requires an old C++ library
+only available in a <code>cmssw</code> image, but your
+<code>plot_results</code> rule needs a modern <code>coffea</code>
+environment.</p>
+<ol style="list-style-type: decimal">
+<li><p>Can you assign different <code>container:</code> directives to
+different rules in the same <code>Snakefile</code>?</p></li>
+<li><p>Try changing the container: in <code>plot_results</code> to
+<code>docker://alpine:latest</code> and run it. What happens?</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>Yes! Snakemake is designed for this. It will start the correct
+container for each specific job. If you switch to alpine:latest, the job
+will fail because alpine does not have python installed by default—this
+proves the command is truly running inside the isolated container!</p>
+</div>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li><p><strong>container:</strong>: A rule-level directive that
+specifies the Docker/Apptainer image to use.</p></li>
+<li><p><strong>–use-apptainer</strong>: The command-line flag required
+to enable container execution.</p></li>
+<li><p>*<strong>–apptainer-args</strong>: Use this to bind external
+storage paths (like <code>/eos</code> or <code>/cvmfs</code>) so the
+container can see them.</p></li>
+<li><p><strong>Environment Agnostic</strong>: You can mix and match
+different containers in a single workflow, ensuring each step has the
+exact dependencies it needs.</p></li>
 </ul>
 </div>
 </div>

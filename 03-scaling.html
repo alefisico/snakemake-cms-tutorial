@@ -119,11 +119,11 @@
   Snakemake for CMS Analysis Tutorial
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 50%" class="percentage">
-    50%
+<aside class="col-md-12 lesson-progress"><div style="width: 43%" class="percentage">
+    43%
   </div>
   <div class="progress cmscat">
-    <div class="progress-bar cmscat" role="progressbar" style="width: 50%" aria-valuenow="50" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar cmscat" role="progressbar" style="width: 43%" aria-valuenow="43" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -207,7 +207,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="01-intro.html">1. Introduction to Snakemake</a>
+        <a href="00-workflows.html">1. The Why: Analysis Reproducibility</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -216,7 +216,16 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="02-daq.html">2. Chaining Rules (The DAG)</a>
+        <a href="01-intro.html">2. Introduction to Snakemake</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="02-daq.html">3. Chaining Rules (The DAG)</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -228,7 +237,7 @@
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
-        3. Scaling with Wildcards
+        4. Scaling with Wildcards
         </span>
       </button>
     </div><!--/div.accordion-header-->
@@ -245,10 +254,19 @@
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
-<div class="accordion accordion-flush" id="accordionFlush5">
+<div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading5">
-        <a href="04-visualizing.html">4. Visualizing the Workflow</a>
+    <div class="accordion-header" id="flush-heading6">
+        <a href="04-visualizing.html">5. Visualizing the Workflow</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="05-containers.html">6. Containerized Execution</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -442,7 +460,7 @@ simulated datasets.</p>
 <span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>    output:</span>
 <span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>        <span class="co">"skimmed/{dataset}.txt"</span></span>
 <span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>    shell:</span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>        <span class="co">"grep 'Signal' {input} &gt; {output}"</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>        <span class="co">"grep 'Signal' {input} &gt; {output} || true"</span></span>
 <span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a></span>
 <span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co"># 3. Updated Count rule with wildcards</span></span>
 <span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>rule count_events:</span>

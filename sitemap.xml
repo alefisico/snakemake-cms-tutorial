@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://alefisico.github.io/snakemake-cms-tutorial/00-workflows.html</loc>
+  </url>
+  <url>
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/01-intro.html</loc>
   </url>
   <url>
@@ -13,6 +16,9 @@
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/04-visualizing.html</loc>
   </url>
   <url>
+    <loc>https://alefisico.github.io/snakemake-cms-tutorial/05-containers.html</loc>
+  </url>
+  <url>
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/404.html</loc>
   </url>
   <url>
@@ -22,10 +28,19 @@
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://alefisico.github.io/snakemake-cms-tutorial/aio.html</loc>
+  </url>
+  <url>
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/citation.html</loc>
   </url>
   <url>
+    <loc>https://alefisico.github.io/snakemake-cms-tutorial/images.html</loc>
+  </url>
+  <url>
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/index.html</loc>
+  </url>
+  <url>
+    <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor/00-workflows.html</loc>
   </url>
   <url>
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor/01-intro.html</loc>
@@ -40,6 +55,9 @@
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor/04-visualizing.html</loc>
   </url>
   <url>
+    <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor/05-containers.html</loc>
+  </url>
+  <url>
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor/404.html</loc>
   </url>
   <url>
@@ -49,16 +67,34 @@
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor/aio.html</loc>
+  </url>
+  <url>
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor/citation.html</loc>
   </url>
   <url>
+    <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor/images.html</loc>
+  </url>
+  <url>
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor/index.html</loc>
+  </url>
+  <url>
+    <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor/key-points.html</loc>
   </url>
   <url>
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor/profiles.html</loc>
   </url>
   <url>
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://alefisico.github.io/snakemake-cms-tutorial/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://alefisico.github.io/snakemake-cms-tutorial/key-points.html</loc>
   </url>
   <url>
     <loc>https://alefisico.github.io/snakemake-cms-tutorial/profiles.html</loc>

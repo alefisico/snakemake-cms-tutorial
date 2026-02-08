@@ -211,7 +211,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="01-intro.html">1. Introduction to Snakemake</a>
+        <a href="00-workflows.html">1. The Why: Analysis Reproducibility</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -220,7 +220,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="02-daq.html">2. Chaining Rules (The DAG)</a>
+        <a href="01-intro.html">2. Introduction to Snakemake</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -229,7 +229,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03-scaling.html">3. Scaling with Wildcards</a>
+        <a href="02-daq.html">3. Chaining Rules (The DAG)</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -238,7 +238,25 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="04-visualizing.html">4. Visualizing the Workflow</a>
+        <a href="03-scaling.html">4. Scaling with Wildcards</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="04-visualizing.html">5. Visualizing the Workflow</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="05-containers.html">6. Containerized Execution</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -286,11 +304,11 @@
         <!-- START: inst/pkgdown/templates/content-syllabus.html -->
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link float-end" href="../instructor/01-intro.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/00-workflows.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link float-end" href="../instructor/01-intro.html" rel="next">Next: Introduction to... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/00-workflows.html" rel="next">Next: The Why: Analysis... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Schedule</h1>
       
@@ -308,17 +326,28 @@ any links that you are not going to use.
 <span class="visually-hidden">Duration: </span>00h 00m
 </td>
 <td>
- 1. <a href="01-intro.html">Introduction to Snakemake</a>
+ 1. <a href="00-workflows.html">The Why: Analysis Reproducibility</a>
+</td>
+<td>
+Why do we need workflow orchestration in CMS?<br>What are the three
+pillars of a reusable analysis?<br>Who is the primary beneficiary of a
+reproducible workflow?
+</td>
+</tr><tr><td>
+<span class="visually-hidden">Duration: </span>00h 10m
+</td>
+<td>
+ 2. <a href="01-intro.html">Introduction to Snakemake</a>
 </td>
 <td>
 What is a Snakefile?<br>How do I define a single processing
 step?<br>How do I execute a rule?
 </td>
 </tr><tr><td>
-<span class="visually-hidden">Duration: </span>00h 20m
+<span class="visually-hidden">Duration: </span>00h 30m
 </td>
 <td>
- 2. <a href="02-daq.html">Chaining Rules (The DAG)</a>
+ 3. <a href="02-daq.html">Chaining Rules (The DAG)</a>
 </td>
 <td>
 How does Snakemake connect different rules?<br>What is a DAG?<br>How
@@ -326,10 +355,10 @@ does Snakemake know what to
 re-run?<br>::::::::::::::::::::::::::::::::::::::::::::::::
 </td>
 </tr><tr><td>
-<span class="visually-hidden">Duration: </span>00h 50m
+<span class="visually-hidden">Duration: </span>01h 00m
 </td>
 <td>
- 3. <a href="03-scaling.html">Scaling with Wildcards</a>
+ 4. <a href="03-scaling.html">Scaling with Wildcards</a>
 </td>
 <td>
 How can I use one rule to process multiple different samples?<br>What
@@ -337,10 +366,10 @@ is a wildcard and how does Snakemake “fill” it?<br>How do I tell
 Snakemake to generate a list of all my target files?
 </td>
 </tr><tr><td>
-<span class="visually-hidden">Duration: </span>01h 20m
+<span class="visually-hidden">Duration: </span>01h 30m
 </td>
 <td>
- 4. <a href="04-visualizing.html">Visualizing the Workflow</a>
+ 5. <a href="04-visualizing.html">Visualizing the Workflow</a>
 </td>
 <td>
 How can I see the dependencies between my rules?<br>What is a Directed
@@ -348,7 +377,19 @@ Acyclic Graph (DAG)?<br>How do I preview what Snakemake
 <em>intends</em> to do?
 </td>
 </tr><tr><td>
-<span class="visually-hidden">Duration: </span>01h 40m
+<span class="visually-hidden">Duration: </span>01h 50m
+</td>
+<td>
+ 6. <a href="05-containers.html">Containerized Execution</a>
+</td>
+<td>
+How do I run specific steps of my analysis in a controlled
+environment?<br>How can I use CMSSW or specific Python versions without
+installing them locally?<br>How does Snakemake handle
+Apptainer/Singularity?
+</td>
+</tr><tr><td>
+<span class="visually-hidden">Duration: </span>02h 20m
 </td>
 <td>
 Finish
@@ -490,7 +531,7 @@ is listed.</p>
   If you want to use conda instead…
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>If you prefer to use <code>conda</code> instead of <code>pixi</code>,
 you can create a conda environment and install Snakemake there. However,
@@ -519,11 +560,11 @@ any links that you are not going to use.
  -->
 </div>
 </section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link float-end" href="../instructor/01-intro.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/00-workflows.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link float-end" href="../instructor/01-intro.html" rel="next">Next: Introduction to... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/00-workflows.html" rel="next">Next: The Why: Analysis... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
     </nav></div>
 <!-- END  : inst/pkgdown/templates/content-syllabus.html -->

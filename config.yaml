@@ -65,10 +65,12 @@ contact: 'alejandro.gomez@cern.ch'
 
 # Order of episodes in your lesson
 episodes: 
+- 00-workflows.md
 - 01-intro.md
 - 02-daq.md
 - 03-scaling.md
 - 04-visualizing.md
+- 05-containers.md
 
 # Information for Learners
 learners: 

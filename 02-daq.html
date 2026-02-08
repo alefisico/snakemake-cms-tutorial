@@ -119,11 +119,11 @@
   Snakemake for CMS Analysis Tutorial
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 20%" class="percentage">
-    20%
+<aside class="col-md-12 lesson-progress"><div style="width: 21%" class="percentage">
+    21%
   </div>
   <div class="progress cmscat">
-    <div class="progress-bar cmscat" role="progressbar" style="width: 20%" aria-valuenow="20" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar cmscat" role="progressbar" style="width: 21%" aria-valuenow="21" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -207,7 +207,16 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="01-intro.html">1. Introduction to Snakemake</a>
+        <a href="00-workflows.html">1. The Why: Analysis Reproducibility</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="01-intro.html">2. Introduction to Snakemake</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -219,7 +228,7 @@
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
-        2. Chaining Rules (The DAG)
+        3. Chaining Rules (The DAG)
         </span>
       </button>
     </div><!--/div.accordion-header-->
@@ -236,19 +245,28 @@
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
-<div class="accordion accordion-flush" id="accordionFlush4">
+<div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading4">
-        <a href="03-scaling.html">3. Scaling with Wildcards</a>
+    <div class="accordion-header" id="flush-heading5">
+        <a href="03-scaling.html">4. Scaling with Wildcards</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
-<div class="accordion accordion-flush" id="accordionFlush5">
+<div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading5">
-        <a href="04-visualizing.html">4. Visualizing the Workflow</a>
+    <div class="accordion-header" id="flush-heading6">
+        <a href="04-visualizing.html">5. Visualizing the Workflow</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="05-containers.html">6. Containerized Execution</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -425,12 +443,20 @@ time, we add a “dummy” rule at the very top.</p>
 <h3 class="callout-title">Lazy Execution (The “Why”)</h3>
 <div class="callout-content">
 <ol style="list-style-type: decimal"><li>Run <code>pixi run snakemake --cores 1</code> again.</li>
-</ol><p>What happens? (Nothing to be done)</p>
+</ol><p>What happens?</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Assuming unrestricted shared filesystem usage.
+host: xxxx
+Building DAG of jobs...
+Nothing to be done (all requested files are present and up to date).</code></pre>
+</div>
 <ol start="2" style="list-style-type: decimal"><li>Modify the original raw data:</li>
-</ol><div class="codewrapper sourceCode" id="cb5">
+</ol><div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">touch</span> raw_data.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">touch</span> raw_data.txt</span></code></pre>
 </div>
 <ol start="3" style="list-style-type: decimal"><li>Run Snakemake again.</li>
 </ol><p>What happens?</p>
@@ -442,7 +468,7 @@ time, we add a “dummy” rule at the very top.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>When you first run the command, Snakemake checks if
 <code>counts.txt</code> exists. Since it doesn’t, it calculates the
