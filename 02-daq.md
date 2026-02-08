@@ -87,7 +87,14 @@ pixi run snakemake --cores 1
 
 1. Run `pixi run snakemake --cores 1` again.
 
-What happens? (Nothing to be done)
+What happens? 
+
+```output
+Assuming unrestricted shared filesystem usage.
+host: xxxx
+Building DAG of jobs...
+Nothing to be done (all requested files are present and up to date).
+```
 
 2. Modify the original raw data:
 

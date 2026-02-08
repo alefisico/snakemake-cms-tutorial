@@ -107,7 +107,7 @@ rule skim_data:
     output:
         "skimmed/{dataset}.txt"
     shell:
-        "grep 'Signal' {input} > {output}"
+        "grep 'Signal' {input} > {output} || true"
 
 # 3. Updated Count rule with wildcards
 rule count_events:

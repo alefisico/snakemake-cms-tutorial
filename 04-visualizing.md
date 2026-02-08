@@ -65,6 +65,27 @@ If you want more detail (like seeing the actual shell commands that will be exec
 pixi run snakemake -n -p
 ```
 
+:::: spoiler
+
+### Did the previous command work?
+
+If you run this commands on top of finished workflow, you should see something like:
+
+```output
+Building DAG of jobs...
+Nothing to be done (all requested files are present and up to date).
+```
+
+This is expected, because all the output files already exist. If you change something in your Snakefile (like adding a new rule or changing an existing one), the dry-run will show you which jobs need to be re-run.
+
+Alternatively, if you want to see the dry-run or the commands to execute, use:
+
+```bash
+pixi run snakemake -n -p --forceall
+```
+
+:::::::::::::
+
 ## Activity: Visualizing our Scaled Workflow
 
 1. Ensure you have the Snakefile from the previous episode (with `DYJets`, `TTbar`, `Data`, and `WJets`).
@@ -75,7 +96,9 @@ pixi run snakemake -n -p
 pixi run snakemake --dag | dot -Tpng > dag.png
 ```
 
-3. Open `dag.png`. Notice how the branches for each dataset are parallel.
+3. Open `dag.png`, it should look like the following image. Notice how the branches for each dataset are parallel.
+
+![DAG Visualization](fig/dag.png)
 
 :::: challenge
 
@@ -102,6 +125,8 @@ pixi run snakemake --rulegraph | dot -Tpng > rulegraph.png
 ```
 
 This is often much more useful for complex CMS analyses to ensure the logic is correct.
+
+![Rule Graph Visualization](fig/rulegraph.png)
 ::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::: keypoints
