@@ -397,3 +397,11 @@ echo "Analysis Complete!"
     * Bash: You have to manually wrap every command in `apptainer exec ....`
     * Snakemake: You define the container: once per rule, and Snakemake handles the wrapping.
 
+::::::::::::::::::::::::::::::::::::: keypoints 
+
+- **Integration:** You can wrap almost any existing script in Snakemake, provided the Input/Output filenames are predictable.
+- **Determinism:** If a script produces random timestamps or unique IDs in filenames, you must "patch" it to ensure Snakemake can track the files.
+- **Hybrid Environments:** While `container:` is preferred, you can explicitly call `apptainer exec` inside a `shell` block when you need complex environment sourcing (like `cmsenv`).
+- **Orchestration:** Snakemake can seamlessly connect completely different software stacks (e.g., Python/Coffea and C++/ROOT/Combine) into a single reproducible pipeline.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
