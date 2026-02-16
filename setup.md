@@ -64,6 +64,8 @@ cd snakemake-cms-tutorial
 
 # 2. Initialize a pixi project
 pixi init .
+## Snakemake is hosted in the conda-forge channel, so we need to add it to our project
+pixi project channel add bioconda
 
 # 3. Add Snakemake and Graphviz
 # (Graphviz is used to visualize our workflow diagrams)
