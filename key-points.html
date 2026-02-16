@@ -445,18 +445,40 @@ relationship between rules rather than individual files.</li>
 </ul></section><section id="05-containers"><h2 class="section-heading"><a href="05-containers.html">Containerized Execution</a></h2>
 <hr class="half-width">
 <ul>
-<li><p><strong>container:</strong>: A rule-level directive that
-specifies the Docker/Apptainer image to use.</p></li>
-<li><p><strong>–use-apptainer</strong>: The command-line flag required
-to enable container execution.</p></li>
-<li><p>*<strong>–apptainer-args</strong>: Use this to bind external
-storage paths (like <code>/eos</code> or <code>/cvmfs</code>) so the
-container can see them.</p></li>
-<li><p><strong>Environment Agnostic</strong>: You can mix and match
+<li>
+<strong>container:</strong>: A rule-level directive that specifies
+the Docker/Apptainer image to use.</li>
+<li>
+<strong>–use-apptainer</strong>: The command-line flag required to
+enable container execution.</li>
+<li>*<strong>–apptainer-args</strong>: Use this to bind external storage
+paths (like <code>/eos</code> or <code>/cvmfs</code>) so the container
+can see them.</li>
+<li>
+<strong>Environment Agnostic</strong>: You can mix and match
 different containers in a single workflow, ensuring each step has the
-exact dependencies it needs.</p></li>
+exact dependencies it needs.</li>
 </ul></section><section id="06-bonus"><h2 class="section-heading"><a href="06-bonus.html">Bonus: The CMSDAS Challenge</a></h2>
-<hr class="half-width"></section>
+<hr class="half-width">
+<ul>
+<li>
+<strong>Integration:</strong> You can wrap almost any existing
+script in Snakemake, provided the Input/Output filenames are
+predictable.</li>
+<li>
+<strong>Determinism:</strong> If a script produces random timestamps
+or unique IDs in filenames, you must “patch” it to ensure Snakemake can
+track the files.</li>
+<li>
+<strong>Hybrid Environments:</strong> While <code>container:</code>
+is preferred, you can explicitly call <code>apptainer exec</code> inside
+a <code>shell</code> block when you need complex environment sourcing
+(like <code>cmsenv</code>).</li>
+<li>
+<strong>Orchestration:</strong> Snakemake can seamlessly connect
+completely different software stacks (e.g., Python/Coffea and
+C++/ROOT/Combine) into a single reproducible pipeline.</li>
+</ul></section>
 </div>
     </main>
 </div>
