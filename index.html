@@ -18,13 +18,13 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-8">
       <div class="large-logo">
-        <img id="cmscat-logo" alt="CMS Common Analysis Tools Group" src="assets/images/cmscat-logo.svg"><span class="badge text-bg-danger">
-          <abbr title="This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.">
+        <img id="cmscat-logo" alt="CMS Common Analysis Tools Group" src="assets/images/cmscat-logo.svg"><span class="badge text-bg-warning">
+          <abbr title="This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.">
             <a href="https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html" class="external-link alert-link">
-              <i aria-hidden="true" class="icon" data-feather="alert-octagon" style="border-radius: 5px"></i>
-              Pre-Alpha
+              <i aria-hidden="true" class="icon" data-feather="alert-triangle" style="border-radius: 5px"></i>
+              Alpha
             </a>
-            <span class="visually-hidden">This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.</span>
+            <span class="visually-hidden">This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.</span>
           </abbr>
         </span>
 
@@ -330,7 +330,6 @@
       <hr></nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Setup</h1>
       
 
-<p><strong>Welcome to the future of physics analysis.</strong></p>
 <p>In this tutorial, we will move beyond the limitations of manual Bash
 scripts and discover how to build <strong>reproducible</strong>,
 <strong>scalable</strong>, and <strong>portable</strong> analysis
@@ -437,10 +436,12 @@ Snakemake. This ensures that our workflow is self-contained.</p>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a></span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co"># 2. Initialize a pixi project</span></span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="ex">pixi</span> init .</span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co"># 3. Add Snakemake and Graphviz</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co"># (Graphviz is used to visualize our workflow diagrams)</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="ex">pixi</span> add snakemake graphviz</span></code></pre>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">## Snakemake is hosted in the conda-forge channel, so we need to add it to our project</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="ex">pixi</span> project channel add bioconda</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co"># 3. Add Snakemake and Graphviz</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co"># (Graphviz is used to visualize our workflow diagrams)</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="ex">pixi</span> add snakemake graphviz</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -556,8 +557,8 @@ any links that you are not going to use.
   "url": "https://alefisico.github.io/snakemake-cms-tutorial/index.html",
   "identifier": "https://alefisico.github.io/snakemake-cms-tutorial/index.html",
   "dateCreated": "2026-02-04",
-  "dateModified": "2026-02-13",
-  "datePublished": "2026-02-13"
+  "dateModified": "2026-02-16",
+  "datePublished": "2026-02-16"
 }
 
   </script><script>
