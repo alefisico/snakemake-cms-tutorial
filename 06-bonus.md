@@ -83,11 +83,6 @@ MC_GROUPS = ["MCTTGamma", "MCTTbar1l", "MCTTbar2l", "MCSingleTop", "MCZJets", "M
 DATA_GROUPS = ["Data"]
 ALL_GROUPS = MC_GROUPS + DATA_GROUPS
 
-rule all:
-    input:
-        expand("results/output_{group}.coffea", group=ALL_GROUPS),
-        "RootFiles/M3_Output.root"
-
 rule run_coffea:
     input:
         script = "ttgamma_longexercise/runFullDataset.py"

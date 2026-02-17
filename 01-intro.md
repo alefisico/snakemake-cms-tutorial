@@ -116,7 +116,9 @@ A `Snakefile` is essentially a Python script with some extra keywords added. Thi
 echo -e "Background\nSignal\nBackground\nSignal" > raw_data.txt
 ```
 
-2. Run Snakemake. We must tell it **what file we want to generate**:
+2. Create a `Snakefile` with the content shown above.
+
+3. Run Snakemake. We must tell it **what file we want to generate**:
 
 ```bash
 pixi run snakemake --cores 1 skimmed_data.txt
