@@ -62,9 +62,27 @@ How to read the DAG:
 pixi run snakemake --dag | dot -Tpng > dag.png
 ```
 
+:::::: spoiler
+
+### For MacOS users
+
+It has been reported that the command above may not work due to differences in how `dot` is handled. If you encounter issues, try the following command instead:
+
+```bash
+pixi run snakemake --dag | pixi run dot -Tpng > dag.png
+```
+
+or you can run:
+
+```bash
+pixi run dot -C
+pixi run snakemake --dag | pixi run dot -Tpng > dag.png
+```
+:::::::::::::::::::::::::::::::::::
+
 3. Open `dag.png`, it should look like the following image. Notice how the branches for each dataset are parallel.
 
-![DAG Visualization](fig/dag.png)
+![DAG Visualization](fig/dag.png){alt="DAG Visualization"}
 
 :::: challenge
 
@@ -92,7 +110,7 @@ pixi run snakemake --rulegraph | dot -Tpng > rulegraph.png
 
 This is often much more useful for complex CMS analyses to ensure the logic is correct.
 
-![Rule Graph Visualization](fig/rulegraph.png)
+![Rule Graph Visualization](fig/rulegraph.png){alt="Rule Graph Visualization"}
 ::::::::::::::::
 
 ## The Dry-Run: "Look Before You Leap"
