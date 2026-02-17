@@ -102,6 +102,9 @@ Nothing to be done (all requested files are present and up to date).
 touch raw_data.txt
 ```
 
+*For MacOS users*: some students have reported that touch does not remove the timestamp. In this case, you can remove the file and re-create it, or try to change the content.
+
+
 3. Run Snakemake again.
 
 What happens?
