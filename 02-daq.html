@@ -18,13 +18,13 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-8">
       <div class="large-logo">
-        <img id="cmscat-logo" alt="CMS Common Analysis Tools Group" src="assets/images/cmscat-logo.svg"><span class="badge text-bg-warning">
-          <abbr title="This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.">
+        <img id="cmscat-logo" alt="CMS Common Analysis Tools Group" src="assets/images/cmscat-logo.svg"><span class="badge text-bg-info">
+          <abbr title="This lesson is in the beta phase, which means that it is ready for teaching by instructors outside of the original author team.">
             <a href="https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html" class="external-link alert-link">
-              <i aria-hidden="true" class="icon" data-feather="alert-triangle" style="border-radius: 5px"></i>
-              Alpha
+              <i aria-hidden="true" class="icon" data-feather="alert-circle" style="border-radius: 5px"></i>
+              Beta
             </a>
-            <span class="visually-hidden">This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.</span>
+            <span class="visually-hidden">This lesson is in the beta phase, which means that it is ready for teaching by instructors outside of the original author team.</span>
           </abbr>
         </span>
 
@@ -339,7 +339,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Chaining Rules (The DAG)</h1>
-        <p>Last updated on 2026-02-08 |
+        <p>Last updated on 2026-02-17 |
 
         <a href="https://github.com/alefisico/snakemake-cms-tutorial/edit/main/episodes/02-daq.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -467,6 +467,9 @@ Nothing to be done (all requested files are present and up to date).</code></pre
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">touch</span> raw_data.txt</span></code></pre>
 </div>
+<p><em>For MacOS users</em>: some students have reported that touch does
+not remove the timestamp. In this case, you can remove the file and
+re-create it, or try to change the content.</p>
 <ol start="3" style="list-style-type: decimal"><li>Run Snakemake again.</li>
 </ol><p>What happens?</p>
 </div>
@@ -477,7 +480,7 @@ Nothing to be done (all requested files are present and up to date).</code></pre
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>When you first run the command, Snakemake checks if
 <code>counts.txt</code> exists. Since it doesn’t, it calculates the
@@ -586,7 +589,7 @@ any links that you are not going to use.
   "url": "https://alefisico.github.io/snakemake-cms-tutorial/02-daq.html",
   "identifier": "https://alefisico.github.io/snakemake-cms-tutorial/02-daq.html",
   "dateCreated": "2026-02-04",
-  "dateModified": "2026-02-08",
+  "dateModified": "2026-02-17",
   "datePublished": "2026-02-17"
 }
 
