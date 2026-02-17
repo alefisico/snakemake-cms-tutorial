@@ -69,6 +69,7 @@ snakemake --cores <N> <target_file>
 
 *  `--cores <N>`: Tells Snakemake how many CPU cores to use. (e.g., `--cores 1` for sequential execution, `--cores 4` for parallel).
 *  `<target_file>`: The file you want to generate. Snakemake will figure out the steps to get there.
+* If you dont specify a snakefile, Snakemake will look for a file named `Snakefile` in the current directory. You can specify a different file with `-s <filename>`.
 
 ---
 
