@@ -495,7 +495,7 @@ code?</h3>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p><strong>Future You.</strong> Six months from now, when you have to
 re-run your plots for a conference or a paper revision, you will thank
@@ -750,8 +750,10 @@ you can list them with commas:</li>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"Background\nSignal\nBackground\nSignal"</span> <span class="op">&gt;</span> raw_data.txt</span></code></pre>
 </div>
 <ol start="2" style="list-style-type: decimal">
-<li>Run Snakemake. We must tell it <strong>what file we want to
-generate</strong>:</li>
+<li><p>Create a <code>Snakefile</code> with the content shown
+above.</p></li>
+<li><p>Run Snakemake. We must tell it <strong>what file we want to
+generate</strong>:</p></li>
 </ol>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1003,7 +1005,7 @@ Nothing to be done (all requested files are present and up to date).</code></pre
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>When you first run the command, Snakemake checks if
 <code>counts.txt</code> exists. Since it doesn’t, it calculates the
@@ -1252,7 +1254,7 @@ lines.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Observe how Snakemake only runs the rules for the new
 <code>WJets</code> sample and skips the ones that were already finished
@@ -1294,7 +1296,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-04-visualizing"><p>Content from <a href="04-visualizing.html">Visualizing the Workflow</a></p>
 <hr>
-<p>Last updated on 2026-02-08 |
+<p>Last updated on 2026-02-17 |
 
         <a href="https://github.com/alefisico/snakemake-cms-tutorial/edit/main/episodes/04-visualizing.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1379,54 +1381,6 @@ to run.</li>
 </ul>
 <hr>
 </div>
-</section><section><h2 class="section-heading" id="the-dry-run-look-before-you-leap">The Dry-Run: “Look Before You Leap”<a class="anchor" aria-label="anchor" href="#the-dry-run-look-before-you-leap"></a>
-</h2>
-<hr class="half-width">
-<p>Before you submit 1,000 jobs to a cluster, you should always perform
-a <strong>Dry-Run</strong>. This tells Snakemake to calculate the DAG
-and print the execution plan without actually running any commands.</p>
-<div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">-n</span></span></code></pre>
-</div>
-<p>If you want more detail (like seeing the actual shell commands that
-will be executed), use:</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">-n</span> <span class="at">-p</span></span></code></pre>
-</div>
-<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
-  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Did the previous command work? </h3>
-</button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
-<div class="accordion-body">
-<p>If you run this commands on top of finished workflow, you should see
-something like:</p>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>Building DAG of jobs...
-Nothing to be done (all requested files are present and up to date).</code></pre>
-</div>
-<p>This is expected, because all the output files already exist. If you
-change something in your Snakefile (like adding a new rule or changing
-an existing one), the dry-run will show you which jobs need to be
-re-run.</p>
-<p>Alternatively, if you want to see the dry-run or the commands to
-execute, use:</p>
-<div class="codewrapper sourceCode" id="cb5">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">-n</span> <span class="at">-p</span> <span class="at">--forceall</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
 </section><section><h2 class="section-heading" id="activity-visualizing-our-scaled-workflow">Activity: Visualizing our Scaled Workflow<a class="anchor" aria-label="anchor" href="#activity-visualizing-our-scaled-workflow"></a>
 </h2>
 <hr class="half-width">
@@ -1436,10 +1390,10 @@ execute, use:</p>
 <code>WJets</code>).</p></li>
 <li><p>Run the DAG command:</p></li>
 </ol>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">--dag</span> <span class="kw">|</span> <span class="ex">dot</span> <span class="at">-Tpng</span> <span class="op">&gt;</span> dag.png</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">--dag</span> <span class="kw">|</span> <span class="ex">dot</span> <span class="at">-Tpng</span> <span class="op">&gt;</span> dag.png</span></code></pre>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>Open <code>dag.png</code>, it should look like the following image.
@@ -1465,7 +1419,7 @@ Notice how the branches for each dataset are parallel.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>With 1 core, Snakemake runs every job sequentially. With 4 cores,
 Snakemake can run all four <code>skim_data</code> jobs simultaneously,
@@ -1487,15 +1441,63 @@ the power of a DAG-based system!</p>
 produce a giant PDF with 1,000 boxes, which is unreadable. To see a
 simplified version that only shows how the rules connect (ignoring the
 individual samples), use:</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">--rulegraph</span> <span class="kw">|</span> <span class="ex">dot</span> <span class="at">-Tpng</span> <span class="op">&gt;</span> rulegraph.png</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">--rulegraph</span> <span class="kw">|</span> <span class="ex">dot</span> <span class="at">-Tpng</span> <span class="op">&gt;</span> rulegraph.png</span></code></pre>
 </div>
 <p>This is often much more useful for complex CMS analyses to ensure the
 logic is correct.</p>
 <figure><img src="fig/rulegraph.png" alt="Rule Graph Visualization" class="figure mx-auto d-block"><div class="figcaption">Rule Graph Visualization</div>
 </figure>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="the-dry-run-look-before-you-leap">The Dry-Run: “Look Before You Leap”<a class="anchor" aria-label="anchor" href="#the-dry-run-look-before-you-leap"></a>
+</h2>
+<hr class="half-width">
+<p>Before you submit 1,000 jobs to a cluster, you should always perform
+a <strong>Dry-Run</strong>. This tells Snakemake to calculate the DAG
+and print the execution plan without actually running any commands.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">-n</span></span></code></pre>
+</div>
+<p>If you want more detail (like seeing the actual shell commands that
+will be executed), use:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">-n</span> <span class="at">-p</span></span></code></pre>
+</div>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Did the previous command work? </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
+<p>If you run this commands on top of finished workflow, you should see
+something like:</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Building DAG of jobs...
+Nothing to be done (all requested files are present and up to date).</code></pre>
+</div>
+<p>This is expected, because all the output files already exist. If you
+change something in your Snakefile (like adding a new rule or changing
+an existing one), the dry-run will show you which jobs need to be
+re-run.</p>
+<p>Alternatively, if you want to see the dry-run or the commands to
+execute, use:</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">pixi</span> run snakemake <span class="at">-n</span> <span class="at">-p</span> <span class="at">--forceall</span></span></code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1810,7 +1812,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-06-bonus"><p>Content from <a href="06-bonus.html">Bonus: The CMSDAS Challenge</a></p>
 <hr>
-<p>Last updated on 2026-02-16 |
+<p>Last updated on 2026-02-17 |
 
         <a href="https://github.com/alefisico/snakemake-cms-tutorial/edit/main/episodes/06-bonus.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1913,7 +1915,7 @@ scenario when integrating legacy code into modern workflows.</p>
   Patch 1: Removing Timestamps from runFullDataset.py
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>Open <code>ttgamma_longexercise/runFullDataset.py</code> and scroll
 to the bottom. You will see lines that look like this:</p>
@@ -1956,23 +1958,18 @@ define a rule that runs <code>runFullDataset.py</code> for each group
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>DATA_GROUPS <span class="op">=</span> [<span class="st">"Data"</span>]</span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>ALL_GROUPS <span class="op">=</span> MC_GROUPS <span class="op">+</span> DATA_GROUPS</span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>rule <span class="bu">all</span>:</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>rule run_coffea:</span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>    <span class="bu">input</span>:</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>        expand(<span class="st">"results/output_</span><span class="sc">{group}</span><span class="st">.coffea"</span>, group<span class="op">=</span>ALL_GROUPS),</span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>        <span class="co">"RootFiles/M3_Output.root"</span></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>rule run_coffea:</span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>    <span class="bu">input</span>:</span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>        script <span class="op">=</span> <span class="st">"ttgamma_longexercise/runFullDataset.py"</span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>    output:</span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>        <span class="co">"results/output_{group}.coffea"</span></span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>    container:</span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>        <span class="co">#docker://coffeateam/coffea-dask-almalinux9:2025.9.0-py3.10"</span></span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>        <span class="co">"/cvmfs/unpacked.cern.ch/registry.hub.docker.com/coffeateam/coffea-dask-almalinux9:2025.9.0-py3.10"</span>   <span class="co">#### it can be from cvmfs</span></span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a>    shell:</span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>        <span class="co"># We run with the modified script which outputs deterministic filenames</span></span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a>        <span class="co">"python {input.script} {wildcards.group} --outdir results --workers 1 --executor local --maxchunks 1"</span></span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a>        <span class="co">#"python {input.script} {wildcards.group} --outdir results --executor lpcjq"   </span><span class="al">###</span><span class="co"> if you want to run the full dataset, takes hours.</span></span></code></pre>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>        script <span class="op">=</span> <span class="st">"ttgamma_longexercise/runFullDataset.py"</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>    output:</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>        <span class="co">"results/output_{group}.coffea"</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>    container:</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>        <span class="co">#docker://coffeateam/coffea-dask-almalinux9:2025.9.0-py3.10"</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>        <span class="co">"/cvmfs/unpacked.cern.ch/registry.hub.docker.com/coffeateam/coffea-dask-almalinux9:2025.9.0-py3.10"</span>   <span class="co">#### it can be from cvmfs</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>    shell:</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>        <span class="co"># We run with the modified script which outputs deterministic filenames</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>        <span class="co">"python {input.script} {wildcards.group} --outdir results --workers 1 --executor local --maxchunks 1"</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>        <span class="co">#"python {input.script} {wildcards.group} --outdir results --executor lpcjq"   </span><span class="al">###</span><span class="co"> if you want to run the full dataset, takes hours.</span></span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -1988,7 +1985,7 @@ define a rule that runs <code>runFullDataset.py</code> for each group
   Patch 2: Enabling Arguments in save_to_root.py
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>The original script <code>ttgamma_longexercise/save_to_root.py</code>
 has a major issue for automation and we will modify it.</p>
@@ -2131,7 +2128,7 @@ Systematics, and Statistics with one command.</p>
   Full Snakefile for Reference
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2216,7 +2213,7 @@ Systematics, and Statistics with one command.</p>
   Full Bash Script for Reference
   </h3>
 </button>
-<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
+<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
