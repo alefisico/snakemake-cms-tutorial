@@ -51,40 +51,6 @@ How to read the DAG:
 
 ----
 
-## The Dry-Run: "Look Before You Leap"
-
-Before you submit 1,000 jobs to a cluster, you should always perform a **Dry-Run**. This tells Snakemake to calculate the DAG and print the execution plan without actually running any commands.
-
-```bash
-pixi run snakemake -n
-```
-
-If you want more detail (like seeing the actual shell commands that will be executed), use:
-
-```bash
-pixi run snakemake -n -p
-```
-
-:::: spoiler
-
-### Did the previous command work?
-
-If you run this commands on top of finished workflow, you should see something like:
-
-```output
-Building DAG of jobs...
-Nothing to be done (all requested files are present and up to date).
-```
-
-This is expected, because all the output files already exist. If you change something in your Snakefile (like adding a new rule or changing an existing one), the dry-run will show you which jobs need to be re-run.
-
-Alternatively, if you want to see the dry-run or the commands to execute, use:
-
-```bash
-pixi run snakemake -n -p --forceall
-```
-
-:::::::::::::
 
 ## Activity: Visualizing our Scaled Workflow
 
@@ -128,6 +94,41 @@ This is often much more useful for complex CMS analyses to ensure the logic is c
 
 ![Rule Graph Visualization](fig/rulegraph.png)
 ::::::::::::::::
+
+## The Dry-Run: "Look Before You Leap"
+
+Before you submit 1,000 jobs to a cluster, you should always perform a **Dry-Run**. This tells Snakemake to calculate the DAG and print the execution plan without actually running any commands.
+
+```bash
+pixi run snakemake -n
+```
+
+If you want more detail (like seeing the actual shell commands that will be executed), use:
+
+```bash
+pixi run snakemake -n -p
+```
+
+:::: spoiler
+
+### Did the previous command work?
+
+If you run this commands on top of finished workflow, you should see something like:
+
+```output
+Building DAG of jobs...
+Nothing to be done (all requested files are present and up to date).
+```
+
+This is expected, because all the output files already exist. If you change something in your Snakefile (like adding a new rule or changing an existing one), the dry-run will show you which jobs need to be re-run.
+
+Alternatively, if you want to see the dry-run or the commands to execute, use:
+
+```bash
+pixi run snakemake -n -p --forceall
+```
+
+:::::::::::::
 
 :::::::::::::::::::::::::::::::::::: keypoints
 
