@@ -339,7 +339,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to Snakemake</h1>
-        <p>Last updated on 2026-02-08 |
+        <p>Last updated on 2026-02-17 |
 
         <a href="https://github.com/alefisico/snakemake-cms-tutorial/edit/main/episodes/01-intro.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -471,6 +471,9 @@ to use. (e.g., <code>--cores 1</code> for sequential execution,
 <li>
 <code>&lt;target_file&gt;</code>: The file you want to generate.
 Snakemake will figure out the steps to get there.</li>
+<li>If you dont specify a snakefile, Snakemake will look for a file
+named <code>Snakefile</code> in the current directory. You can specify a
+different file with <code>-s &lt;filename&gt;</code>.</li>
 </ul><hr></section><section><h2 class="section-heading" id="the-anatomy-of-a-rule">The Anatomy of a Rule<a class="anchor" aria-label="anchor" href="#the-anatomy-of-a-rule"></a></h2>
 <hr class="half-width"><p>The building block of Snakemake is the <strong>rule</strong>. Think
 of it as a recipe. To make a dish, you need ingredients (inputs), a
@@ -548,7 +551,7 @@ generate</strong>:</li>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Output </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -588,7 +591,7 @@ Finished jobid: 0 (Rule: skim_data)
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>If <code>snakemake</code> was not installed using pixi but with a
 conda environment or pip, you should remove the <code>pixi run</code>
@@ -623,7 +626,7 @@ of the pixi environment.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>This <code>IndentationError</code> is the most common error you will
 encounter.</p>
@@ -710,8 +713,8 @@ any links that you are not going to use.
   "url": "https://alefisico.github.io/snakemake-cms-tutorial/instructor/01-intro.html",
   "identifier": "https://alefisico.github.io/snakemake-cms-tutorial/instructor/01-intro.html",
   "dateCreated": "2026-02-04",
-  "dateModified": "2026-02-08",
-  "datePublished": "2026-02-16"
+  "dateModified": "2026-02-17",
+  "datePublished": "2026-02-17"
 }
 
   </script><script>
