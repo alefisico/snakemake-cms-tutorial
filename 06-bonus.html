@@ -433,7 +433,7 @@ scenario when integrating legacy code into modern workflows.</p>
   Patch 1: Removing Timestamps from runFullDataset.py
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>Open <code>ttgamma_longexercise/runFullDataset.py</code> and scroll
 to the bottom. You will see lines that look like this:</p>
@@ -502,7 +502,7 @@ define a rule that runs <code>runFullDataset.py</code> for each group
   Patch 2: Enabling Arguments in save_to_root.py
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>The original script <code>ttgamma_longexercise/save_to_root.py</code>
 has a major issue for automation and we will modify it.</p>
@@ -577,15 +577,15 @@ shell command.</p>
 <span id="cb7-9"><a href="#cb7-9" tabindex="-1" aria-label="code-block-7-9"></a>        <span class="co">"fitDiagnosticsTest.root"</span></span>
 <span id="cb7-10"><a href="#cb7-10" tabindex="-1" aria-label="code-block-7-10"></a>    shell:</span>
 <span id="cb7-11"><a href="#cb7-11" tabindex="-1" aria-label="code-block-7-11"></a>        <span class="co">"""</span></span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1" aria-label="code-block-7-12"></a><span class="co">        APPTAINER_SHELL=$(which bash) apptainer exec -B .:/home/cmsusr/analysis </span><span class="ch">\</span></span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1" aria-label="code-block-7-13"></a><span class="co">            -B /cvmfs --pwd /home/cmsusr/analysis/  </span><span class="ch">\</span></span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1" aria-label="code-block-7-14"></a><span class="co">            {input.container} </span><span class="ch">\</span></span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1" aria-label="code-block-7-15"></a><span class="co">                /bin/bash -c "export LANG=C &amp;&amp; export LC_ALL=C &amp;&amp; </span><span class="ch">\</span></span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1" aria-label="code-block-7-16"></a><span class="co">                source /cvmfs/cms.cern.ch/cmsset_default.sh &amp;&amp; </span><span class="ch">\</span></span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1" aria-label="code-block-7-17"></a><span class="co">                cd /home/cmsusr/CMSSW_14_1_0_pre4/ &amp;&amp; </span><span class="ch">\</span></span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1" aria-label="code-block-7-18"></a><span class="co">                 cmsenv &amp;&amp; </span><span class="ch">\</span></span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1" aria-label="code-block-7-19"></a><span class="co">                 cd - &amp;&amp; </span><span class="ch">\</span></span>
-<span id="cb7-20"><a href="#cb7-20" tabindex="-1" aria-label="code-block-7-20"></a><span class="co">                text2workspace.py {input.card} -m 125 -o workspace.root &amp;&amp; </span><span class="ch">\</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1" aria-label="code-block-7-12"></a><span class="co">        APPTAINER_SHELL=$(which bash) apptainer exec -B .:/home/cmsusr/analysis </span><span class="op">\</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1" aria-label="code-block-7-13"></a><span class="co">            -B /cvmfs --pwd /home/cmsusr/analysis/  </span><span class="op">\</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1" aria-label="code-block-7-14"></a><span class="co">            {input.container} </span><span class="op">\</span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1" aria-label="code-block-7-15"></a><span class="co">                /bin/bash -c "export LANG=C &amp;&amp; export LC_ALL=C &amp;&amp; </span><span class="op">\</span></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1" aria-label="code-block-7-16"></a><span class="co">                source /cvmfs/cms.cern.ch/cmsset_default.sh &amp;&amp; </span><span class="op">\</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1" aria-label="code-block-7-17"></a><span class="co">                cd /home/cmsusr/CMSSW_14_1_0_pre4/ &amp;&amp; </span><span class="op">\</span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1" aria-label="code-block-7-18"></a><span class="co">                 cmsenv &amp;&amp; </span><span class="op">\</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1" aria-label="code-block-7-19"></a><span class="co">                 cd - &amp;&amp; </span><span class="op">\</span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1" aria-label="code-block-7-20"></a><span class="co">                text2workspace.py {input.card} -m 125 -o workspace.root &amp;&amp; </span><span class="op">\</span></span>
 <span id="cb7-21"><a href="#cb7-21" tabindex="-1" aria-label="code-block-7-21"></a><span class="co">                combine -M FitDiagnostics workspace.root --saveShapes --saveWithUncertainties"</span></span>
 <span id="cb7-22"><a href="#cb7-22" tabindex="-1" aria-label="code-block-7-22"></a><span class="co">        """</span></span></code></pre>
 </div>
@@ -639,7 +639,7 @@ Systematics, and Statistics with one command.</p>
   Full Snakefile for Reference
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -700,15 +700,15 @@ Systematics, and Statistics with one command.</p>
 <span id="cb10-54"><a href="#cb10-54" tabindex="-1" aria-label="code-block-10-54"></a><span class="co">        #export APPTAINER_CACHEDIR="/tmp/$(whoami)/apptainer_cache"</span></span>
 <span id="cb10-55"><a href="#cb10-55" tabindex="-1" aria-label="code-block-10-55"></a><span class="co">        #export APPTAINER_TMPDIR="/tmp/.apptainer/"</span></span>
 <span id="cb10-56"><a href="#cb10-56" tabindex="-1" aria-label="code-block-10-56"></a></span>
-<span id="cb10-57"><a href="#cb10-57" tabindex="-1" aria-label="code-block-10-57"></a><span class="co">        APPTAINER_SHELL=$(which bash) apptainer exec -B .:/home/cmsusr/analysis </span><span class="ch">\</span></span>
-<span id="cb10-58"><a href="#cb10-58" tabindex="-1" aria-label="code-block-10-58"></a><span class="co">              -B /cvmfs --pwd /home/cmsusr/analysis/  </span><span class="ch">\</span></span>
-<span id="cb10-59"><a href="#cb10-59" tabindex="-1" aria-label="code-block-10-59"></a><span class="co">              {input.container} </span><span class="ch">\</span></span>
-<span id="cb10-60"><a href="#cb10-60" tabindex="-1" aria-label="code-block-10-60"></a><span class="co">              /bin/bash -c "export LANG=C &amp;&amp; export LC_ALL=C &amp;&amp; </span><span class="ch">\</span></span>
-<span id="cb10-61"><a href="#cb10-61" tabindex="-1" aria-label="code-block-10-61"></a><span class="co">              source /cvmfs/cms.cern.ch/cmsset_default.sh &amp;&amp; </span><span class="ch">\</span></span>
-<span id="cb10-62"><a href="#cb10-62" tabindex="-1" aria-label="code-block-10-62"></a><span class="co">             cd /home/cmsusr/CMSSW_14_1_0_pre4/ &amp;&amp; </span><span class="ch">\</span></span>
-<span id="cb10-63"><a href="#cb10-63" tabindex="-1" aria-label="code-block-10-63"></a><span class="co">             cmsenv &amp;&amp; </span><span class="ch">\</span></span>
-<span id="cb10-64"><a href="#cb10-64" tabindex="-1" aria-label="code-block-10-64"></a><span class="co">             cd - &amp;&amp; </span><span class="ch">\</span></span>
-<span id="cb10-65"><a href="#cb10-65" tabindex="-1" aria-label="code-block-10-65"></a><span class="co">            text2workspace.py {input.card} -m 125 -o workspace.root &amp;&amp; </span><span class="ch">\</span></span>
+<span id="cb10-57"><a href="#cb10-57" tabindex="-1" aria-label="code-block-10-57"></a><span class="co">        APPTAINER_SHELL=$(which bash) apptainer exec -B .:/home/cmsusr/analysis </span><span class="op">\</span></span>
+<span id="cb10-58"><a href="#cb10-58" tabindex="-1" aria-label="code-block-10-58"></a><span class="co">              -B /cvmfs --pwd /home/cmsusr/analysis/  </span><span class="op">\</span></span>
+<span id="cb10-59"><a href="#cb10-59" tabindex="-1" aria-label="code-block-10-59"></a><span class="co">              {input.container} </span><span class="op">\</span></span>
+<span id="cb10-60"><a href="#cb10-60" tabindex="-1" aria-label="code-block-10-60"></a><span class="co">              /bin/bash -c "export LANG=C &amp;&amp; export LC_ALL=C &amp;&amp; </span><span class="op">\</span></span>
+<span id="cb10-61"><a href="#cb10-61" tabindex="-1" aria-label="code-block-10-61"></a><span class="co">              source /cvmfs/cms.cern.ch/cmsset_default.sh &amp;&amp; </span><span class="op">\</span></span>
+<span id="cb10-62"><a href="#cb10-62" tabindex="-1" aria-label="code-block-10-62"></a><span class="co">             cd /home/cmsusr/CMSSW_14_1_0_pre4/ &amp;&amp; </span><span class="op">\</span></span>
+<span id="cb10-63"><a href="#cb10-63" tabindex="-1" aria-label="code-block-10-63"></a><span class="co">             cmsenv &amp;&amp; </span><span class="op">\</span></span>
+<span id="cb10-64"><a href="#cb10-64" tabindex="-1" aria-label="code-block-10-64"></a><span class="co">             cd - &amp;&amp; </span><span class="op">\</span></span>
+<span id="cb10-65"><a href="#cb10-65" tabindex="-1" aria-label="code-block-10-65"></a><span class="co">            text2workspace.py {input.card} -m 125 -o workspace.root &amp;&amp; </span><span class="op">\</span></span>
 <span id="cb10-66"><a href="#cb10-66" tabindex="-1" aria-label="code-block-10-66"></a><span class="co">            combine -M FitDiagnostics workspace.root --saveShapes --saveWithUncertainties"</span></span>
 <span id="cb10-67"><a href="#cb10-67" tabindex="-1" aria-label="code-block-10-67"></a><span class="co">        """</span></span></code></pre>
 </div>
@@ -724,7 +724,7 @@ Systematics, and Statistics with one command.</p>
   Full Bash Script for Reference
   </h3>
 </button>
-<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
+<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -933,7 +933,7 @@ any links that you are not going to use.
   "identifier": "https://alefisico.github.io/snakemake-cms-tutorial/06-bonus.html",
   "dateCreated": "2026-02-04",
   "dateModified": "2026-02-17",
-  "datePublished": "2026-04-28"
+  "datePublished": "2026-05-05"
 }
 
   </script><script>
